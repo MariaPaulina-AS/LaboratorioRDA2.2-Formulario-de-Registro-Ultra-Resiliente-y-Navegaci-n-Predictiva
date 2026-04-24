@@ -9,6 +9,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.laboratorio1.data.UserPreferences
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
 
 class FormViewModel(
     private val stateHandle: SavedStateHandle,
@@ -25,9 +26,15 @@ class FormViewModel(
 
     val nameFromDisk = userPrefs.userName.asLiveData()
 
+    var showSavedIcon by mutableStateOf(false)
+        private set
+
     fun saveName(newName: String) {
         viewModelScope.launch {
             userPrefs.saveName(newName)
+            showSavedIcon = true
+            delay(1000)
+            showSavedIcon = false
         }
     }
 }

@@ -78,6 +78,11 @@ fun ResilientFormScreen(viewModel: FormViewModel) {
                 viewModel.saveName(it)
             },
             label = { Text("Nombre (Persiste al cerrar app)") },
+            trailingIcon = {
+                if (viewModel.showSavedIcon) {
+                    Text("✅")
+                }
+            },
             modifier = Modifier.padding(top = 16.dp)
         )
 
